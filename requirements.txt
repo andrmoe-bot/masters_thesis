@@ -1,4 +1,2 @@
-doit
 networkx
 matplotlib
-bibtexparser
