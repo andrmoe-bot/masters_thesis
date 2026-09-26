@@ -1,0 +1,74 @@
+/* Thesis style sheet. Open the HTML in Chrome and use Print → Save as PDF.
+ *
+ * Conventions:
+ *   h1                  title (once, inside <header>)
+ *   h2, h3, h4          auto-numbered sections; add class="nonum" to skip
+ *   <figure>            auto-numbered "Figure N" in its <figcaption>
+ *   <figure class="table"> auto-numbered "Table N" (put a <table> inside)
+ *   math                write MathML (<math>…</math>), rendered natively
+ *   citations           <a href="#moe2026">Moe 2026</a>, list entries in #references
+ *   <section class="page-break">  starts on a new page
+ */
+
+@page {
+  size: A4;
+  margin: 25mm 25mm 25mm 25mm;
+  @bottom-center { content: counter(page); font: 10pt Georgia, serif; }
+}
+@page :first { @bottom-center { content: none; } }
+
+:root {
+  --text: #111;
+  --muted: #555;
+  --rule: #999;
+  --link: #1a4fa0;
+}
+
+html { font: 11pt/1.5 Georgia, "Times New Roman", serif; color: var(--text); background: #fff; }
+body { max-width: 160mm; margin: 2rem auto; padding: 0 1rem; counter-reset: h2 figure table; }
+@media print { body { max-width: none; margin: 0; padding: 0; } }
+
+/* Title block */
+header { text-align: center; margin-bottom: 3rem; }
+header h1 { font-size: 20pt; margin-bottom: .5rem; }
+header p { margin: .2rem 0; color: var(--muted); }
+
+/* Headings and numbering */
+h1, h2, h3, h4 { line-height: 1.25; break-after: avoid; }
+h2 { font-size: 15pt; margin-top: 2rem; counter-increment: h2; counter-reset: h3; }
+h3 { font-size: 12.5pt; margin-top: 1.5rem; counter-increment: h3; counter-reset: h4; }
+h4 { font-size: 11pt; margin-top: 1.2rem; counter-increment: h4; }
+h2:not(.nonum)::before { content: counter(h2) "\2003"; }
+h3:not(.nonum)::before { content: counter(h2) "." counter(h3) "\2003"; }
+h4:not(.nonum)::before { content: counter(h2) "." counter(h3) "." counter(h4) "\2003"; }
+.nonum { counter-increment: none; }
+
+/* Body text */
+p { margin: 0 0 .8em; text-align: justify; hyphens: auto; orphans: 3; widows: 3; }
+a { color: var(--link); text-decoration: none; }
+code, pre { font-family: "DejaVu Sans Mono", Consolas, monospace; font-size: .88em; }
+pre { background: #f4f4f4; padding: .6em .8em; overflow-x: auto; break-inside: avoid; }
+blockquote { margin: 1em 2em; color: var(--muted); }
+math[display="block"] { margin: 1em 0; }
+
+/* Figures and tables */
+figure { margin: 1.5em 0; text-align: center; break-inside: avoid; }
+figure img, figure svg { max-width: 100%; }
+figcaption { font-size: .9em; margin-top: .5em; text-align: left; }
+figure:not(.table) { counter-increment: figure; }
+figure:not(.table) > figcaption::before { content: "Figure " counter(figure) ": "; font-weight: bold; }
+figure.table { counter-increment: table; }
+figure.table > figcaption { margin: 0 0 .5em; }
+figure.table > figcaption::before { content: "Table " counter(table) ": "; font-weight: bold; }
+
+/* booktabs-style tables */
+table { border-collapse: collapse; margin: 0 auto; font-size: .92em; border-top: 1.5px solid; border-bottom: 1.5px solid; }
+thead { border-bottom: 1px solid; }
+th, td { padding: .3em .8em; text-align: left; }
+
+/* References */
+#references ol { padding-left: 1.5em; font-size: .92em; }
+#references li { margin-bottom: .4em; }
+#references li:target { background: #fff3b0; }
+
+.page-break { break-before: page; }
