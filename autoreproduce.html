@@ -16,8 +16,7 @@
     <h2>Introduction</h2>
     <p>
         Reproducibility is important for the advancement of science, but attempting to reproduce past results is a labor-intensive process without much reward for scientists.
-        LLMs are a promising option to partially or fully automating this.
-        
+        LLMs are a promising option to partially or fully automating this. Previous work has ...
     </p>
     <h2>Background</h2>
 
@@ -34,6 +33,8 @@
         <p>
             The idea is to take papers with existing implementation, and separate out the most compute heavy stage, 
             in such a way that multiple approaches to reproducibility assessment can be tried without having to rerun the whole experiment.
+            I expect the final assessment to be the most difficult stage to get right, since it requires sophisticated reasoning and knowledge.
+            I therefore think that reducing the compute requirements for running such agents will be very important.
         </p>
         <p>
             Reproducibility assessment is a difficult task to decompose, because the final assessment must take every aspect of the process into account, 
@@ -44,14 +45,21 @@
         </p>
         <p>
             In the case of the code repair agent, this means that it's not the agent's task to vouch that the repair is correct, bug free, or representative of the paper.
-            It's job is to do trial and error to make the code run, to complete the experiment. The assessment agent shouldn't need to trust the code repair agent. 
-            It only needs to trust that the research artifacts were made with the script from the that the code repair agent submitted, 
+            It's job is to do the trial and error work to make the code run. The assessment agent shouldn't need to trust the code repair agent. 
+            It only needs to trust that the research artifacts were made with the script from that the code repair agent submitted, 
             and this can be done with human-written software.
         </p>
         <p>
             A weakness with this decomposition is that the assessment agent might conclude that the code has a bug that invalidates the result. 
             This would mean that compute was unnecessarily wasted. However, we can still keep the task decomposition 
-            by altering the order of operations in a way that is invisible to the agents.
+            by altering the order of operations in a way that is invisible to the agents. The assessment agent must first decide if the code is good enough to be executed,
+            then it can assess the resulting artifact. It doesn't need to know if the experiment was run after or before its go-ahead signal.
+        </p>
+        <p>
+            The code repair agent is planned to be implemented with codex, using an open-weight model. Its prompt and source code can be found in the appendix.
+        </p>
+        <p>
+            The system is evaluation dataset contains ...
         </p>
 
     <h2>Use of AI tools</h2>
@@ -61,8 +69,14 @@
 
 
     <h2>Results</h2>
+    <p>
+        Here are the results from the full run.
+    </p>
 
     <h2>Conclusion</h2>
+    <p>
+        
+    </p>
     
     <h2>Plan</h2>
     <p>Project must be done within 20 weeks</p>
