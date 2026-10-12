@@ -12,6 +12,58 @@
         <p>Andreas Moe</p>
         <p>2026</p>
     </header>
+    
+    <h2>Introduction</h2>
+    <p>
+        Reproducibility is important for the advancement of science, but attempting to reproduce past results is a labor-intensive process without much reward for scientists.
+        LLMs are a promising option to partially or fully automating this.
+        
+    </p>
+    <h2>Background</h2>
+
+    <h2>Method</h2>
+        <p>
+            This thesis is will decompose the task into 3 stages, based on the classification system by <a href="#gundersen2021"></a>, and only implement stage 2.
+        </p>
+        The stages are:
+        <ul>
+            <li>Paper to code, R1->R2</li>
+            <li><b>Code repair and execution, R2->R4</b></li>
+            <li>Reproducibility assessment, IR4</li>
+        </ul>
+        <p>
+            The idea is to take papers with existing implementation, and separate out the most compute heavy stage, 
+            in such a way that multiple approaches to reproducibility assessment can be tried without having to rerun the whole experiment.
+        </p>
+        <p>
+            Reproducibility assessment is a difficult task to decompose, because the final assessment must take every aspect of the process into account, 
+            in order to assess whether the original paper's conclusion is correct. A task decomposition would be fragile, if errors stack up from stage to stage.
+            I therefore think that a good decomposition would not delegate the task of making jugdements to multiple agents. 
+            It should instead have one agent assess every step for validity, and have other agents make this as easy as possible.
+            These other agents must therefore contribute in ways that are independently verifiable.
+        </p>
+        <p>
+            In the case of the code repair agent, this means that it's not the agent's task to vouch that the repair is correct, bug free, or representative of the paper.
+            It's job is to do trial and error to make the code run, to complete the experiment. The assessment agent shouldn't need to trust the code repair agent. 
+            It only needs to trust that the research artifacts were made with the script from the that the code repair agent submitted, 
+            and this can be done with human-written software.
+        </p>
+        <p>
+            A weakness with this decomposition is that the assessment agent might conclude that the code has a bug that invalidates the result. 
+            This would mean that compute was unnecessarily wasted. However, we can still keep the task decomposition 
+            by altering the order of operations in a way that is invisible to the agents.
+        </p>
+
+    <h2>Use of AI tools</h2>
+    <p>
+        No LLM were used to write or edit the text in this document. All figures are designed by AI agents. All styling in this document is done by AI agents.
+    </p>
+
+
+    <h2>Results</h2>
+
+    <h2>Conclusion</h2>
+    
     <h2>Plan</h2>
     <p>Project must be done within 20 weeks</p>
     <h3>Dataset curation</h3>
@@ -41,22 +93,6 @@
     <p>Set aside 8 weeks </p>
     <h3>Writeup</h3>
     <p>Done in parallell with the full run - 10 weeks</p>
-    
-    <h2>Introduction</h2>
-
-    <h2>Background</h2>
-
-    <h2>Method</h2>
-
-    <figure>
-        <img src="figures/pipeline.svg" alt="Paper and code repository feed an R2→R4 system, such as Shah et al., CORE-Agent, ResearchCodeAgent or Jailbreak Foundry, which produces code output. The paper also feeds hypothesis extraction (Snelleman et al.), producing structured hypotheses. The IR4 system uses both to assess reproducibility.">
-    </figure>
-
-    <h3>Use of AI tools</h3>
-
-    <h2>Results</h2>
-
-    <h2>Conclusion</h2>
 
     <section id="references" data-nocite="all">
         <h2 class="nonum">References</h2>
