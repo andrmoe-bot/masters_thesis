@@ -1,0 +1,7 @@
+{
+  "repair_agent": ["Your task is to fully reproduce all the experiments in the included paper, using the code in this git repository.", 
+    "Create a new branch named 'repro' with a docker file and the necessary code changes.", 
+    "An automated process on another machine will clone this branch, and run 'docker build -t repro . && docker run repro'",
+    "The raw results from the experiments must end up in a mounted volume named 'results'."
+  ]
+}
